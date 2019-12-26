@@ -21,9 +21,9 @@ namespace PacticeDesign.BusinessLayer
 
         public void ProcessingRules(List<string> rules)
         {
-            RulesStratergy rulesStratergy = new RulesStratergy();
+            RulesValidator rulesValidator = new RulesValidator();
             //invoke stratergy..
-            var result = rulesStratergy.GetValidetedValue(modelValues);
+            List<bool> result = rulesValidator.ValidateRules(modelValues);
             
         }
         private List<ProcessingModel> GetProcessingModel(List<DataModel> models)
