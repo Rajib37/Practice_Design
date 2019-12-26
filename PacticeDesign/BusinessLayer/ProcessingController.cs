@@ -10,13 +10,22 @@ namespace PacticeDesign.BusinessLayer
 {
     class ProcessingController
     {
+        private List<ProcessingModel> modelValues;
+
         public void PreProcessing(string filename)
         {
             var fileReader = new Reader();
             var model = fileReader.ReadJson(filename);
-            GetProcessingModel(model);
+            modelValues = GetProcessingModel(model);
         }
 
+        public void ProcessingRules(List<string> rules)
+        {
+            RulesStratergy rulesStratergy = new RulesStratergy();
+            //invoke stratergy..
+            var result = rulesStratergy.GetValidetedValue(modelValues);
+            
+        }
         private List<ProcessingModel> GetProcessingModel(List<DataModel> models)
         {
             Dictionary<string, List<ValueModel>> map = new Dictionary<string, List<ValueModel>>();
@@ -37,5 +46,7 @@ namespace PacticeDesign.BusinessLayer
                 }
             }
 
-            
+            List<ProcessingModel> processModleList = map.Select(x => new ProcessingModel { Signal = x.Key, ValueModels = x.Value }).ToList();
+            return processModleList;
         }
+    }

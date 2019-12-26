@@ -8,7 +8,7 @@ namespace PacticeDesign.Model
 {
     class ProcessingModel
     {
-        string Signal { get; set; }
-        List<ValueModel> ValueModels { get; set; }
+        public string Signal { get; set; }
+        public List<ValueModel> ValueModels { get; set; }
     }
 }
